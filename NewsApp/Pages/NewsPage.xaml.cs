@@ -5,6 +5,7 @@ namespace NewsApp.Pages;
 
 public partial class NewsPage : ContentPage
 {
+    private bool IsNextPage = false;
     public List<Article> ArticlesList { get; set; }
     public List<Category> CategorysList = new List<Category>()
     {
@@ -28,7 +29,10 @@ public partial class NewsPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await PassCategory("breaking-news");
+        if (IsNextPage == false)
+        {
+            await PassCategory("breaking-news");
+        }
     }
 
     public async Task PassCategory(string categoryName)
@@ -48,4 +52,10 @@ public partial class NewsPage : ContentPage
             var selectedItem = e.CurrentSelection.FirstOrDefault() as Category;
             await PassCategory(selectedItem.Name); 
         }
+    private async void CvNews_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var selectedItem = e.CurrentSelection.FirstOrDefault() as Article;
+        IsNextPage = true;
+        await Navigation.PushAsync(new NewsDetailPage(selectedItem));
     }
+}

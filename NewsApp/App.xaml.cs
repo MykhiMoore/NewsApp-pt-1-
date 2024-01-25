@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            MainPage = new Pages.NewsPage();
+            MainPage = new NavigationPage(new Pages.NewsPage());
         }
     }
 }

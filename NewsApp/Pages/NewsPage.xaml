@@ -2,11 +2,12 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="NewsApp.Pages.NewsPage"
-             >
+             NavigationPage.HasNavigationBar="False"
+             Title="NewsPage">
     <Grid RowDefinitions="Auto, Auto, *">
-        <Label Grid.Row="0" Text="News 24" FontSize="Title" VerticalOptions="Center" HorizontalOptions="Center"/>
-        <CollectionView Grid.Row="1" x:Name="CvCategories" HeightRequest="60" SelectionMode="Single" SelectionChanged="CvCategories_SelectionChanged"> 
-            
+        <Label Grid.Row="0" Text="News 24" FontSize="Title"
+               VerticalOptions="Center" HorizontalOptions="Center"/>
+        <CollectionView Grid.Row="1" x:Name="CvCategories" HeightRequest="60">
             <CollectionView.ItemsLayout>
                 <LinearItemsLayout Orientation="Horizontal" ItemSpacing="5"/>
             </CollectionView.ItemsLayout>
@@ -18,14 +19,14 @@
                 </DataTemplate>
             </CollectionView.ItemTemplate>
         </CollectionView>
-        <CollectionView Grid.Row="2" x:Name="CvNews" HeightRequest="60">
+        <CollectionView Grid.Row="2" x:Name="CvNews">
             <CollectionView.ItemsLayout>
-                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="15"/>
+                <LinearItemsLayout Orientation="Vertical" ItemSpacing="15"/>
             </CollectionView.ItemsLayout>
             <CollectionView.ItemTemplate>
                 <DataTemplate>
                     <StackLayout Padding="10">
-                        <Image HeightRequest="200" Source="{Binding Image}"/>
+                        <Image HeightRequest="200" Source="{Binding Image}" Aspect="AspectFill"/>
                         <Label FontSize="Medium" Text="{Binding Title}"/>
                     </StackLayout>
                 </DataTemplate>
